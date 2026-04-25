@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zinari - Invoice Management</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      // Immediately apply theme to avoid white flash
+      const theme = localStorage.getItem("zinari_theme") || "dark";
+      if (theme === "dark") {
+        document.documentElement.classList.add("dark");
+        document.documentElement.style.backgroundColor = "#141625";
+      } else {
+        document.documentElement.classList.remove("dark");
+        document.documentElement.style.backgroundColor = "#f8f8fb";
+      }
+    </script>
+  </head>
+  <body class="transition-colors duration-300">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

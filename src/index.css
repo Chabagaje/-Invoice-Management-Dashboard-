@@ -1,0 +1,113 @@
+@import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;700&display=swap");
+@import "tailwindcss";
+
+:root {
+  /* Default Light Mode Colors */
+  --app-bg: #f8f8fb;
+  --card-bg: #ffffff;
+  --table-bg: #f9fafe;
+  --text-main: #0c0e16;
+  --text-secondary: #888eb0;
+  --input-bg: #ffffff;
+  --input-border: #dfe3fa;
+}
+
+html.dark {
+  /* Dark Mode Colors Override */
+  --app-bg: #141625;
+  --card-bg: #1e2139;
+  --table-bg: #252945;
+  --text-main: #ffffff;
+  --text-secondary: #dfe3fa;
+  --input-bg: #1e2139;
+  --input-border: #252945;
+}
+
+@theme {
+  --color-purple-500: #7c5dfa;
+  --color-red-500: #ec5757;
+}
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "League Spartan", sans-serif;
+  }
+
+  html,
+  body {
+    background-color: var(--app-bg) !important;
+    color: var(--text-main);
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
+    min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden; /* Prevents horizontal scattering/scrolling */
+  }
+
+  #root {
+    width: 100%;
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  /* Use this class for your Dashboard and Detail containers */
+  .container-tight {
+    @apply w-full max-w-[730px] mx-auto px-6 md:px-0;
+  }
+
+  .invoice-card-style {
+    background-color: var(--card-bg);
+    color: var(--text-main);
+    /* Removed p-6 from here to let the component handle padding for mobile grids */
+    @apply rounded-lg shadow-sm border border-transparent hover:border-purple-500 transition-all duration-300;
+  }
+
+  .form-input-style {
+    background-color: var(--input-bg);
+    border: 1px solid var(--input-border);
+    color: var(--text-main);
+    @apply w-full rounded-[4px] p-4 font-bold text-[13px] outline-none transition-all duration-200 min-h-[48px];
+  }
+
+  .text-dynamic-secondary {
+    color: var(--text-secondary);
+  }
+
+  .status-pill {
+    @apply w-[104px] h-[40px] rounded-[6px] flex items-center justify-center gap-2 font-bold text-[12px] capitalize;
+  }
+}
+
+/* --- Layout Structure --- */
+
+main {
+  /* Mobile Spacing: Space for 72px Sidebar + 32px top gap */
+  padding-top: 104px;
+  padding-bottom: 64px;
+  min-height: 100vh;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  main {
+    padding-top: 72px; /* Standard top padding for desktop */
+    padding-left: 103px; /* Sidebar width for desktop */
+    padding-bottom: 0;
+  }
+}
+
+/* Fix for mobile sidebar behavior */
+@media (max-width: 1023px) {
+  #sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+  }
+}
